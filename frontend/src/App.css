@@ -6,8 +6,8 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Poppins', sans-serif; 
+  background-color: #fcfcfc; /* A slightly softer white */
   color: #333;
   line-height: 1.6;
 }
@@ -161,4 +161,21 @@ pre {
 .happy-tails-footer p {
   color: #666;
   margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   NEW PET SHOP STYLES ADDED BELOW 
+   ========================================= */
+
+/* Add a nice hover lift effect to all bootstrap cards */
+.card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+  border: none !important; /* Removes the harsh default border */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Adds a soft default shadow */
+  border-radius: 12px !important; /* Makes the corners a bit softer */
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important; /* Shadow gets bigger on hover */
 }

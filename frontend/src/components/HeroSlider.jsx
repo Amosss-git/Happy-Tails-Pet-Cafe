@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./HeroSlider.css";
 
 import pet1 from "../assets/pet1.jpg";
@@ -33,8 +32,26 @@ function HeroSlider({ onOrderClick }) {
 
       <div className="hero-overlay">
         <div className="hero-content">
-          <h1>Happy Tails Café</h1>
-          <p>CAFE • GROOMING • PET HOTEL • PET SUPPLIES</p>
+          
+          {/* Added fontSize here! You can increase or decrease the 4.5rem */}
+          <h1 style={{ 
+            textShadow: '2px 2px 6px rgba(0, 0, 0, 0.7)', 
+            fontSize: '4.5rem',
+            marginBottom: '10px' // Added a little space below the title
+          }}>
+            <span style={{ color: '#ff4d94' }}>HAPPY </span>
+            <span style={{ color: '#36d7e8' }}>TAILS</span>
+          </h1>
+          
+          {/* Added fontSize here too! */}
+          <p style={{ 
+            textShadow: '1px 1px 4px rgba(0, 0, 0, 0.8)', 
+            fontWeight: 'bold',
+            fontSize: '1.2rem',
+            letterSpacing: '2px' // Spaced out the letters slightly to look more premium
+          }}>
+            CAFE • GROOMING • PET HOTEL • PET SUPPLIES
+          </p>
 
           <button className="hero-btn" onClick={onOrderClick}>
             Order Now

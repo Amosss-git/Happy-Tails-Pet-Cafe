@@ -5,17 +5,29 @@ import "./Navbar.css";
 
 function Navbar({ isAuthenticated, onSignOut, onOpenModal }) {
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{ backgroundColor: "#ffffff" }}>
       <div className="nav-left">
-        <Link to="/">
+        <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <img src={logo} alt="Logo" className="nav-logo" />
+          
+          {/* Split HappyTails into two colors! */}
+          <span className="logo-text" style={{ 
+            marginLeft: "10px", 
+            fontSize: "1.5rem", 
+            fontWeight: "700", 
+            textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
+          }}>
+            <span style={{ color: "#ff4d94" }}>Happy</span>
+            <span style={{ color: "#36d7e8" }}>Tails</span>
+          </span>
+          
         </Link>
       </div>
 
-      <ul className="nav-center">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/menu">Café Menu</Link></li>
-        <li><Link to="/about">About Us</Link></li>
+      <ul className="nav-center" style={{ marginLeft: "auto", marginRight: "40px" }}>
+        <li><Link to="/" style={{ color: "#000000" }}>Home</Link></li>
+        <li><Link to="/menu" style={{ color: "#000000" }}>Café Menu</Link></li>
+        <li><Link to="/about" style={{ color: "#000000" }}>About Us</Link></li>
       </ul>
 
       <div className="nav-right">
@@ -26,15 +38,16 @@ function Navbar({ isAuthenticated, onSignOut, onOpenModal }) {
                 src={profileIcon}
                 alt="Profile"
                 className="profile-icon"
+                style={{ filter: "brightness(0)" }}
               />
             </Link>
 
-            <button className="auth-btn" onClick={onSignOut}>
+            <button className="auth-btn" onClick={onSignOut} style={{ color: "#000000" }}>
               Sign Out
             </button>
           </>
         ) : (
-          <button className="auth-btn" onClick={onOpenModal}>
+          <button className="auth-btn" onClick={onOpenModal} style={{ color: "#000000" }}>
             Sign Up / Login
           </button>
         )}

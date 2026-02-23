@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import AuthModal from "./components/AuthModal";
+import Footer from "./components/Footer"; // <-- This looks in the components folder!
 
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -54,23 +55,25 @@ function App() {
   };
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Navbar
         isAuthenticated={isAuthenticated}
         onSignOut={handleSignOut}
         onOpenModal={() => setShowModal(true)}
       />
 
-      <Routes>
-        <Route
-          path="/"
-          element={<Home onOrderClick={handleOrderClick} />}
-        />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/order" element={<Order />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+      <main className="flex-grow-1">
+        <Routes>
+          <Route
+            path="/"
+            element={<Home onOrderClick={handleOrderClick} />}
+          />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </main>
 
       <AuthModal
         isOpen={showModal}
@@ -78,7 +81,9 @@ function App() {
         onLogin={handleLogin}
         onGuest={handleGuest}
       />
-    </>
+
+      <Footer />
+    </div>
   );
 }
 
