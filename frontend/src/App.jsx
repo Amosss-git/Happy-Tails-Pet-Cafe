@@ -16,6 +16,8 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import OrderSuccess from "./pages/OrderSuccess";
+// ✅ CRITICAL: Make sure this file exists in src/pages/TrackOrder.jsx
+import TrackOrder from "./pages/TrackOrder"; 
 
 import pattern from "./assets/pattern.png";
 
@@ -49,7 +51,6 @@ function App() {
     }
 
     return () => {
-      // cleanup
       document.body.style.backgroundImage = "none";
     };
   }, [location.pathname]);
@@ -97,6 +98,9 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/order/:category" element={<OrderCategory />} />
           <Route path="/order-success" element={<OrderSuccess />} />
+
+          {/* ✅ TRACK ORDER ROUTE ADDED HERE */}
+          <Route path="/track-order" element={<TrackOrder />} />
 
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />

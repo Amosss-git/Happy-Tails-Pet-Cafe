@@ -1,30 +1,30 @@
 /* src/components/MenuBelt.css */
-.belt-section{
+.belt-section {
   padding: 80px 0;
   background: #fff;
   text-align: center;
 }
 
-.belt-title{
+.belt-title {
   font-size: 48px;
   margin: 0;
   font-weight: 800;
 }
 
-.belt-subtitle{
+.belt-subtitle {
   margin: 10px auto 35px;
   max-width: 720px;
   opacity: 0.8;
 }
 
-.belt-viewport{
+.belt-viewport {
   overflow: hidden;
   width: 100%;
   position: relative;
 }
 
-/* This is the “conveyor belt” */
-.belt-track{
+/* Restoring the animation track */
+.belt-track {
   display: flex;
   gap: 28px;
   padding: 20px 28px 30px;
@@ -32,63 +32,79 @@
   animation: beltMove 28s linear infinite;
 }
 
-/* Pause when user hovers (nice UX) */
-.belt-viewport:hover .belt-track{
+/* Restoring pause on hover */
+.belt-viewport:hover .belt-track {
   animation-play-state: paused;
 }
 
-@keyframes beltMove{
+@keyframes beltMove {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); } /* because we duplicated items */
+  100% { transform: translateX(-50%); } 
 }
 
-.belt-card{
+/* Card Alignment Fixes */
+.belt-card {
   width: 260px;
   min-width: 260px;
   background: #e9eff7;
   border-radius: 14px;
   padding: 18px 18px 16px;
   text-align: left;
+  /* Flexbox makes children line up */
+  display: flex;
+  flex-direction: column;
 }
 
-.belt-imgWrap{
+.belt-imgWrap {
   height: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0; 
 }
 
-.belt-img{
+.belt-img {
   max-height: 220px;
   max-width: 100%;
   object-fit: contain;
 }
 
-.belt-name{
+.belt-name {
   margin: 10px 0 12px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
+  /* Fixed height so 1-line and 2-line names match */
+  min-height: 2.5em; 
+  display: flex;
+  align-items: center;
 }
 
-.belt-tags{
+.belt-tags {
   display: flex;
   justify-content: space-between;
   padding-top: 10px;
   border-top: 1px solid rgba(0,0,0,0.15);
   font-size: 14px;
   opacity: 0.85;
+  /* Pushes this row to the bottom of the card */
+  margin-top: auto; 
 }
 
-.belt-ctaRow{
+.belt-ctaRow {
   margin-top: 28px;
 }
 
-.belt-ctaBtn{
+.belt-ctaBtn {
   display: inline-block;
   padding: 12px 28px;
   border-radius: 999px;
-  background: #273a86;
+  background: #e75480;
   color: #fff;
   text-decoration: none;
   font-weight: 700;
+  transition: transform 0.2s ease;
+}
+
+.belt-ctaBtn:hover {
+  transform: scale(1.05);
 }

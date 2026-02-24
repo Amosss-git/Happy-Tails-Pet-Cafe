@@ -1,7 +1,7 @@
 // src/components/MenuBelt.jsx
 import "./MenuBelt.css";
 
-// sample images (use your own in src/assets)
+// sample images (keep using your assets)
 import coffee from "../assets/coffee.png";
 import frappe from "../assets/frappe.png";
 import hot from "../assets/hot.png";
@@ -9,13 +9,14 @@ import soda from "../assets/soda.png";
 import sandwiches from "../assets/sandwiches.png";
 
 const items = [
-  { name: "Berry Cheesecake", tagLeft: "Frappes", tagRight: "Ice", img: frappe },
-  { name: "Irish Cream", tagLeft: "Frappes", tagRight: "Ice", img: frappe },
-  { name: "Triple Java Jelly", tagLeft: "Frappes", tagRight: "Ice", img: coffee },
-  { name: "CEO Latte", tagLeft: "Coffee", tagRight: "Hot", img: hot },
-  { name: "Spanish Latte", tagLeft: "Coffee", tagRight: "Ice/Hot", img: coffee },
-  { name: "Lychee Soda", tagLeft: "Soda", tagRight: "Ice", img: soda },
-  { name: "Club Sandwich", tagLeft: "Food", tagRight: "Toasted", img: sandwiches },
+  { name: "Cloud Americano", tagLeft: "Iced Coffee", tagRight: "₱120", img: coffee },
+  { name: "Choco Java Chip Frappe", tagLeft: "Frappuccino", tagRight: "₱170", img: frappe },
+  { name: "Chicken Cordon Bleu", tagLeft: "Rice Meal", tagRight: "₱180", img: hot },
+  { name: "Spanish Latte", tagLeft: "Hot Coffee", tagRight: "₱120", img: hot },
+  { name: "Blueberry Soda", tagLeft: "Non-Caff", tagRight: "₱90", img: soda },
+  { name: "Chicken Alfredo Pasta", tagLeft: "Pasta", tagRight: "₱190", img: sandwiches },
+  { name: "Iced Cocoa Tiramisu", tagLeft: "Iced Coffee", tagRight: "₱160", img: coffee },
+  { name: "Burger Steak", tagLeft: "Rice Meal", tagRight: "₱160", img: hot },
 ];
 
 export default function MenuBelt() {
@@ -40,8 +41,8 @@ export default function MenuBelt() {
               <h3 className="belt-name">{it.name}</h3>
 
               <div className="belt-tags">
-                <span>{it.tagLeft}</span>
-                <span>{it.tagRight}</span>
+                <span className="tag-category">{it.tagLeft}</span>
+                <span className="tag-price">{it.tagRight}</span>
               </div>
             </article>
           ))}
@@ -49,7 +50,7 @@ export default function MenuBelt() {
       </div>
 
       <div className="belt-ctaRow">
-        <a className="belt-ctaBtn" href="/menu">Discover More</a>
+        <a className="belt-ctaBtn" href="/order">Order Now</a>
       </div>
     </section>
   );

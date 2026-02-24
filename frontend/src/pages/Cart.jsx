@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 
 export default function Cart() {
   const navigate = useNavigate();
   const { cart, changeQty, removeItem, total, clearCart } = useCart();
+  const [activeOrder, setActiveOrder] = useState(null);
+
+  useEffect(() => {
+    // ✅ Check if there's a recent order to track
+    const savedId = localStorage.getItem("latestOrderId");
+    const savedType = localStorage.getItem("latestOrderType");
+    
+    if (savedId) {
+      // Get the live status from storage (Staff updates this)
+      const liveStatus = localStorage.getItem(`status_${savedId}`) || "Pending";
+      setActiveOrder({
+        id: savedId,
+        type: savedType,
+        status: liveStatus
+      });
+    }
+  }, []);
 
   return (
     <div style={{ maxWidth: 900, margin: "0 auto", padding: 24 }}>
@@ -12,14 +29,54 @@ export default function Cart() {
         <h1 style={{ margin: 0 }}>Your Cart</h1>
         <div style={{ display: "flex", gap: 8 }}>
           <Link to="/order" style={{ textDecoration: "none" }}>← Add more</Link>
-          <button onClick={clearCart}>Clear</button>
+          {cart.length > 0 && <button onClick={clearCart}>Clear</button>}
         </div>
       </div>
 
       {cart.length === 0 ? (
         <div style={{ textAlign: "center", marginTop: 40 }}>
-          <p>Your cart is empty.</p>
-          <Link to="/order">Go to Order</Link>
+          {/* ✅ Check if there's an active order to show instead of just an empty message */}
+          {activeOrder ? (
+            <div style={{ 
+              background: "white", 
+              padding: "30px", 
+              borderRadius: "20px", 
+              boxShadow: "0 10px 25px rgba(0,0,0,0.05)",
+              border: "1px solid #eee"
+            }}>
+              <div style={{ fontSize: "40px" }}>🥤</div>
+              <h2 style={{ marginBottom: 8 }}>Order in Progress</h2>
+              <p style={{ color: "#666", marginBottom: 20 }}>
+                Order <strong>#{activeOrder.id}</strong> is currently <strong>{activeOrder.status}</strong>.
+              </p>
+              
+              <button 
+                onClick={() => navigate("/track-order")}
+                style={{ 
+                  padding: "12px 24px", 
+                  backgroundColor: "#36d7e8", 
+                  color: "white", 
+                  border: "none", 
+                  borderRadius: "8px", 
+                  fontWeight: "bold", 
+                  cursor: "pointer",
+                  width: "100%",
+                  maxWidth: "300px"
+                }}
+              >
+                Track My Order 📍
+              </button>
+              
+              <div style={{ marginTop: 20 }}>
+                <Link to="/order" style={{ color: "#ff4d94", textDecoration: "none" }}>Order something else?</Link>
+              </div>
+            </div>
+          ) : (
+            <>
+              <p>Your cart is empty.</p>
+              <Link to="/order">Go to Order</Link>
+            </>
+          )}
         </div>
       ) : (
         <>
@@ -64,7 +121,7 @@ export default function Cart() {
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 12 }}>
-            <button onClick={() => navigate("/checkout")} style={{ fontWeight: 900, padding: "10px 14px" }}>
+            <button onClick={() => navigate("/checkout")} style={{ fontWeight: 900, padding: "10px 14px", backgroundColor: "#36d7e8", border: "none", borderRadius: "8px", cursor: "pointer" }}>
               Checkout
             </button>
           </div>
