@@ -1,9 +1,11 @@
 import HeroSlider from "../components/HeroSlider";
+import MenuBelt from "../components/MenuBelt";
 
-function Home({ onOrderClick }) {
+export default function Home({ onOrderClick }) {
   return (
-    <HeroSlider onOrderClick={onOrderClick} />
+    <>
+      <HeroSlider onOrderClick={onOrderClick} />
+      <MenuBelt />
+    </>
   );
 }
-
-export default Home;

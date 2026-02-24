@@ -1,0 +1,94 @@
+/* src/components/MenuBelt.css */
+.belt-section{
+  padding: 80px 0;
+  background: #fff;
+  text-align: center;
+}
+
+.belt-title{
+  font-size: 48px;
+  margin: 0;
+  font-weight: 800;
+}
+
+.belt-subtitle{
+  margin: 10px auto 35px;
+  max-width: 720px;
+  opacity: 0.8;
+}
+
+.belt-viewport{
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* This is the “conveyor belt” */
+.belt-track{
+  display: flex;
+  gap: 28px;
+  padding: 20px 28px 30px;
+  width: max-content;
+  animation: beltMove 28s linear infinite;
+}
+
+/* Pause when user hovers (nice UX) */
+.belt-viewport:hover .belt-track{
+  animation-play-state: paused;
+}
+
+@keyframes beltMove{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* because we duplicated items */
+}
+
+.belt-card{
+  width: 260px;
+  min-width: 260px;
+  background: #e9eff7;
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  text-align: left;
+}
+
+.belt-imgWrap{
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.belt-img{
+  max-height: 220px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.belt-name{
+  margin: 10px 0 12px;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.belt-tags{
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0,0,0,0.15);
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.belt-ctaRow{
+  margin-top: 28px;
+}
+
+.belt-ctaBtn{
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: #273a86;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+}

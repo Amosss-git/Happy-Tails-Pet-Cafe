@@ -2,25 +2,33 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import profileIcon from "../assets/profile.png";
 import "./Navbar.css";
+import { useCart } from "../context/CartContext";
 
 function Navbar({ isAuthenticated, onSignOut, onOpenModal }) {
+  // ✅ declare FIRST (before any use)
+  const { cartCount } = useCart();
+
   return (
     <nav className="navbar" style={{ backgroundColor: "#ffffff" }}>
       <div className="nav-left">
-        <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+        <Link
+          to="/"
+          style={{ display: "flex", alignItems: "center", textDecoration: "none" }}
+        >
           <img src={logo} alt="Logo" className="nav-logo" />
-          
-          {/* Split HappyTails into two colors! */}
-          <span className="logo-text" style={{ 
-            marginLeft: "10px", 
-            fontSize: "1.5rem", 
-            fontWeight: "700", 
-            textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
-          }}>
+
+          <span
+            className="logo-text"
+            style={{
+              marginLeft: "10px",
+              fontSize: "1.5rem",
+              fontWeight: "700",
+              textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+            }}
+          >
             <span style={{ color: "#ff4d94" }}>Happy</span>
             <span style={{ color: "#36d7e8" }}>Tails</span>
           </span>
-          
         </Link>
       </div>
 
@@ -31,6 +39,12 @@ function Navbar({ isAuthenticated, onSignOut, onOpenModal }) {
       </ul>
 
       <div className="nav-right">
+        {/* 🧺 Basket icon + badge */}
+        <Link to="/cart" className="cart-link" aria-label="Basket">
+          <span className="basket-icon">🧺</span>
+          {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
+        </Link>
+
         {isAuthenticated ? (
           <>
             <Link to="/profile" className="profile-link">

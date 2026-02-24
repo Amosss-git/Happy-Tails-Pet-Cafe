@@ -1,19 +1,24 @@
 .order-page {
-    padding-top: 120px;
-    font-family: "Poppins", sans-serif;
-    text-align: center;
-  }
+  display: block;
+}
   
-  .order-header {
-    background: #f7b6c9;
-    padding: 40px 0;
-  }
   
-  .order-header h1 {
-    color: white;
-    font-size: 50px;
-    font-weight: 700;
-  }
+/* ✅ banner: full width and directly under navbar */
+.order-header {
+  width: 100%;
+  background: #f6b6c8;
+  margin: 0;
+  padding: 28px 0;
+  text-align: center;
+}
+
+/* ✅ remove default h1 spacing */
+.order-header h1 {
+  margin: 0;
+  color: #fff;
+  font-weight: 900;
+  font-size: 34px;
+}
   
   .categories {
     display: grid;

@@ -1,15 +1,23 @@
-import { useState, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+// src/App.jsx
+import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import AuthModal from "./components/AuthModal";
-import Footer from "./components/Footer"; // <-- This looks in the components folder!
 
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
 import About from "./pages/About";
 import Order from "./pages/Order";
+import OrderCategory from "./pages/OrderCategory";
 import Profile from "./pages/Profile";
+
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import OrderSuccess from "./pages/OrderSuccess";
+
+import pattern from "./assets/pattern.png";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -17,13 +25,34 @@ function App() {
   const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // ✅ Restore login state if saved
   useEffect(() => {
     const savedAuth = localStorage.getItem("isAuthenticated");
-    if (savedAuth === "true") {
-      setIsAuthenticated(true);
-    }
+    if (savedAuth === "true") setIsAuthenticated(true);
   }, []);
+
+  // ✅ Background on all pages EXCEPT landing page "/"
+  useEffect(() => {
+    const isLanding = location.pathname === "/";
+
+    if (!isLanding) {
+      document.body.style.backgroundColor = "#f2f2f2";
+      document.body.style.backgroundImage = `url(${pattern})`;
+      document.body.style.backgroundRepeat = "repeat";
+      document.body.style.backgroundSize = "520px";
+      document.body.style.backgroundAttachment = "fixed";
+    } else {
+      document.body.style.backgroundColor = "#ffffff";
+      document.body.style.backgroundImage = "none";
+    }
+
+    return () => {
+      // cleanup
+      document.body.style.backgroundImage = "none";
+    };
+  }, [location.pathname]);
 
   const handleLogin = () => {
     setIsAuthenticated(true);
@@ -47,33 +76,35 @@ function App() {
   };
 
   const handleOrderClick = () => {
-    if (!isAuthenticated && !isGuest) {
-      setShowModal(true);
-    } else {
-      navigate("/order");
-    }
+    if (!isAuthenticated && !isGuest) setShowModal(true);
+    else navigate("/order");
   };
 
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div className="app-shell">
       <Navbar
         isAuthenticated={isAuthenticated}
         onSignOut={handleSignOut}
         onOpenModal={() => setShowModal(true)}
       />
 
-      <main className="flex-grow-1">
+      <main className="app-main">
         <Routes>
-          <Route
-            path="/"
-            element={<Home onOrderClick={handleOrderClick} />}
-          />
+          <Route path="/" element={<Home onOrderClick={handleOrderClick} />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/about" element={<About />} />
+
           <Route path="/order" element={<Order />} />
+          <Route path="/order/:category" element={<OrderCategory />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
+
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </main>
+
+      <Footer />
 
       <AuthModal
         isOpen={showModal}
@@ -81,8 +112,6 @@ function App() {
         onLogin={handleLogin}
         onGuest={handleGuest}
       />
-
-      <Footer />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 .about-page {
     min-height: 100vh;
     padding-top: 120px;
-    background: #fdf6f8;
     display: flex;
     justify-content: center;
     align-items: flex-start;
