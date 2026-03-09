@@ -1,18 +1,18 @@
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 
 
-import StaffLogin from "./pages/StaffLogin";
-import StaffRegister from "./pages/StaffRegister";
-import StaffDashboard from "./pages/StaffDashboard";
-import Orders from "./pages/Orders";
-import Menu from "./pages/Menu";
-import Inventory from "./pages/Inventory";
-import Customers from "./pages/Customers";
-import Profile from "./pages/StaffProfile";
-import ActivityHistory from "./pages/ActivityHistory";
-import OwnerLogin from "./pages/OwnerLogin";
-import OwnerDashboard from "./pages/OwnerDashboard";
-import OwnerActivityHistory from "./pages/OwnerActivityHistory";
+import StaffLogin from "./pages/staff/StaffLogin";
+import StaffRegister from "./pages/staff/StaffRegister";
+import StaffDashboard from "./pages/staff/StaffDashboard";
+import Orders from "./pages/staff/Orders";
+import Menu from "./pages/staff/Menu";
+import Inventory from "./pages/staff/Inventory";
+import Customers from "./pages/staff/Customers";
+import Profile from "./pages/staff/StaffProfile";
+import ActivityHistory from "./pages/staff/ActivityHistory";
+import OwnerLogin from "./pages/admin/OwnerLogin";
+import OwnerDashboard from "./pages/admin/OwnerDashboard";
+import OwnerActivityHistory from "./pages/admin/OwnerActivityHistory";
 
 export default function App(){
 
