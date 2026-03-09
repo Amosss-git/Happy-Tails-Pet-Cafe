@@ -223,7 +223,7 @@ onChange={(e)=>setNewItem({...newItem,category:e.target.value})}
 
 <div className="imgWrap">
 
-<img src={new URL(`../assets/${item.image.split("/").pop()}`, import.meta.url).href} alt={item.name}/>
+<img src={new URL(`../../assets/${item.image.split("/").pop()}`, import.meta.url).href} alt={item.name}/>
 
 {!item.available && (
 <div className="overlay">
