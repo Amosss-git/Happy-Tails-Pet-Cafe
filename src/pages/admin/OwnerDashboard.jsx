@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./OwnerDashboard.css";
-import logo from "../assets/logo.jpg";
+import logo from "../../assets/logo.jpg";
 
 function OwnerDashboard(){
 
@@ -12,7 +12,8 @@ const handleLogout = () => {
 const confirmLogout = window.confirm("Are you sure you want to logout?");
 
 if(confirmLogout){
-navigate("/");
+localStorage.removeItem("userRole");
+navigate("/owner-login");
 }
 
 };

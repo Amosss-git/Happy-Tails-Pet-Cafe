@@ -2,18 +2,17 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./StaffLogin.css";
 
-import cafe1 from "../assets/cafe1.jpg";
-import cafe2 from "../assets/cafe2.jpg";
-import cafe3 from "../assets/cafe3.jpg";
+import cafe1 from "../../assets/cafe1.jpg";
+import cafe2 from "../../assets/cafe2.jpg";
+import cafe3 from "../../assets/cafe3.jpg";
 
 const images = [cafe1, cafe2, cafe3];
 
-function OwnerLogin() {
+function StaffLogin() {
 
   const navigate = useNavigate();
 
   const [currentImage, setCurrentImage] = useState(0);
-
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
@@ -28,17 +27,17 @@ function OwnerLogin() {
   const handleLogin = () => {
 
     if(!email.endsWith("@happytails.com")){
-      alert("Unauthorized domain. Use a @happytails.com email.");
+      alert("Only Happy Tails staff emails are allowed.");
       return;
     }
 
-    if(password !== "owner123"){
-      alert("Incorrect owner password.");
+    if(password !== "happytails123"){
+      alert("Incorrect staff password.");
       return;
     }
 
-    navigate("/owner-dashboard");
-
+    localStorage.setItem("userRole", "staff");
+    navigate("/dashboard");
   };
 
   return (
@@ -57,7 +56,7 @@ function OwnerLogin() {
             <span className="pink">Café</span>
           </h1>
 
-          <p className="portal-text">Owner Management Portal</p>
+          <p className="portal-text">Staff Management Portal</p>
 
         </div>
       </div>
@@ -66,17 +65,17 @@ function OwnerLogin() {
 
         <div className="login-card">
 
-          <h2>Owner Login</h2>
+          <h2>Staff Login</h2>
 
-          <input 
-            type="email" 
+          <input
+            type="email"
             placeholder="Email"
             value={email}
             onChange={(e)=>setEmail(e.target.value)}
           />
 
-          <input 
-            type="password" 
+          <input
+            type="password"
             placeholder="Password"
             value={password}
             onChange={(e)=>setPassword(e.target.value)}
@@ -86,9 +85,14 @@ function OwnerLogin() {
             Login
           </button>
 
-          <Link to="/staff-login" className="register-link">
-            Back to Staff Login
+          <Link to="/staff-register" className="register-link">
+            Don't have an account? Register
           </Link>
+
+          <Link to="/owner-login" className="register-link">
+            I am the owner
+          </Link>
+
 
         </div>
 
@@ -98,4 +102,4 @@ function OwnerLogin() {
   );
 }
 
-export default OwnerLogin;
+export default StaffLogin;

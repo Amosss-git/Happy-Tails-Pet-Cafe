@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ActivityHistory.css";
+import "./OwnerActivityHistory.css";
 import { useNavigate } from "react-router-dom";
 
 export default function OwnerActivityHistory(){
