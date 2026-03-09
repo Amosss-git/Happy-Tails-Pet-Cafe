@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StaffDashboard.css";
-import logo from "../assets/logo.jpg";
+import logo from "../../assets/logo.jpg";
 
 function StaffDashboard(){
 
@@ -14,7 +14,8 @@ const handleLogout = () => {
 const confirmLogout = window.confirm("Are you sure you want to logout?");
 
 if(confirmLogout){
-navigate("/");
+localStorage.removeItem("userRole");
+navigate("/staff-login");
 }
 
 };
