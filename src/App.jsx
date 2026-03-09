@@ -1,5 +1,4 @@
-import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
-
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import StaffLogin from "./pages/staff/StaffLogin";
 import StaffRegister from "./pages/staff/StaffRegister";
@@ -14,44 +13,112 @@ import OwnerLogin from "./pages/admin/OwnerLogin";
 import OwnerDashboard from "./pages/admin/OwnerDashboard";
 import OwnerActivityHistory from "./pages/admin/OwnerActivityHistory";
 
-export default function App(){
+const getRole = () => localStorage.getItem("userRole");
 
-return(
+function StaffOrOwnerRoute({ children }) {
+  const role = getRole();
 
-<Router>
+  if (role === "staff" || role === "owner") {
+    return children;
+  }
 
-<Routes>
+  return <Navigate to="/staff-login" replace />;
+}
 
-<Route path="/" element={<StaffLogin/>} />
+function OwnerOnlyRoute({ children }) {
+  const role = getRole();
 
-<Route path="/staff-login" element={<StaffLogin/>} />
+  if (role === "owner") {
+    return children;
+  }
 
-<Route path="/staff-register" element={<StaffRegister/>} />
+  return <Navigate to="/owner-login" replace />;
+}
 
-<Route path="/dashboard" element={<StaffDashboard />} />
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/staff-login" replace />} />
 
-<Route path="/orders" element={<Orders />} />
+        <Route path="/staff-login" element={<StaffLogin />} />
+        <Route path="/staff-register" element={<StaffRegister />} />
+        <Route path="/owner-login" element={<OwnerLogin />} />
 
-<Route path="/menu" element={<Menu/>} />
+        <Route
+          path="/dashboard"
+          element={
+            <StaffOrOwnerRoute>
+              <StaffDashboard />
+            </StaffOrOwnerRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <StaffOrOwnerRoute>
+              <Orders />
+            </StaffOrOwnerRoute>
+          }
+        />
+        <Route
+          path="/menu"
+          element={
+            <StaffOrOwnerRoute>
+              <Menu />
+            </StaffOrOwnerRoute>
+          }
+        />
+        <Route
+          path="/inventory"
+          element={
+            <StaffOrOwnerRoute>
+              <Inventory />
+            </StaffOrOwnerRoute>
+          }
+        />
+        <Route
+          path="/customers"
+          element={
+            <StaffOrOwnerRoute>
+              <Customers />
+            </StaffOrOwnerRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <StaffOrOwnerRoute>
+              <Profile />
+            </StaffOrOwnerRoute>
+          }
+        />
+        <Route
+          path="/activity-history"
+          element={
+            <StaffOrOwnerRoute>
+              <ActivityHistory />
+            </StaffOrOwnerRoute>
+          }
+        />
 
-<Route path="/inventory" element={<Inventory/>} />
-
-<Route path="/customers" element={<Customers/>} />
-
-<Route path="/profile" element={<Profile/>} />
-
-<Route path="/activity-history" element={<ActivityHistory />} />
-
-<Route path="/owner-login" element={<OwnerLogin />} /> 
-
-<Route path="/owner-dashboard" element={<OwnerDashboard />} /> 
-
-<Route path="/owner-activity-history" element={<OwnerActivityHistory />} /> 
-
-</Routes>
-
-</Router>
-
-);
-
+        <Route
+          path="/owner-dashboard"
+          element={
+            <OwnerOnlyRoute>
+              <OwnerDashboard />
+            </OwnerOnlyRoute>
+          }
+        />
+        <Route
+          path="/owner-activity-history"
+          element={
+            <OwnerOnlyRoute>
+              <OwnerActivityHistory />
+            </OwnerOnlyRoute>
+          }
+        />
+      </Routes>
+    </Router>
+  );
 }

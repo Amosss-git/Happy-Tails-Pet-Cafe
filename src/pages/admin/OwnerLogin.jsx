@@ -37,6 +37,7 @@ function OwnerLogin() {
       return;
     }
 
+    localStorage.setItem("userRole", "owner");
     navigate("/owner-dashboard");
 
   };

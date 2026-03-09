@@ -14,7 +14,8 @@ const handleLogout = () => {
 const confirmLogout = window.confirm("Are you sure you want to logout?");
 
 if(confirmLogout){
-navigate("/");
+localStorage.removeItem("userRole");
+navigate("/staff-login");
 }
 
 };

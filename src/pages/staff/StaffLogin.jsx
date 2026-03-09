@@ -36,6 +36,7 @@ function StaffLogin() {
       return;
     }
 
+    localStorage.setItem("userRole", "staff");
     navigate("/dashboard");
   };
 
