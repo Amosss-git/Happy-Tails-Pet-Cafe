@@ -91,9 +91,6 @@ function OwnerLogin() {
             Back to Staff Login
           </Link>
 
-          <Link to="/customer-login" className="register-link">
-            Customer Login
-          </Link>
 
         </div>
 

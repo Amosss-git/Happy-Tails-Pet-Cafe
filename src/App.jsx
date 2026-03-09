@@ -12,8 +12,6 @@ import ActivityHistory from "./pages/staff/ActivityHistory";
 import OwnerLogin from "./pages/admin/OwnerLogin";
 import OwnerDashboard from "./pages/admin/OwnerDashboard";
 import OwnerActivityHistory from "./pages/admin/OwnerActivityHistory";
-import CustomerLogin from "./pages/customer/CustomerLogin";
-import CustomerDashboard from "./pages/customer/CustomerDashboard";
 
 const getRole = () => localStorage.getItem("userRole");
 
@@ -33,14 +31,6 @@ function OwnerOnlyRoute({ children }) {
   return <Navigate to="/owner-login" replace />;
 }
 
-function CustomerOnlyRoute({ children }) {
-  const role = getRole();
-
-  if (role === "customer") return children;
-
-  return <Navigate to="/customer-login" replace />;
-}
-
 export default function App() {
   return (
     <Router>
@@ -50,7 +40,6 @@ export default function App() {
         <Route path="/staff-login" element={<StaffLogin />} />
         <Route path="/staff-register" element={<StaffRegister />} />
         <Route path="/owner-login" element={<OwnerLogin />} />
-        <Route path="/customer-login" element={<CustomerLogin />} />
 
         <Route
           path="/dashboard"
@@ -126,14 +115,6 @@ export default function App() {
           }
         />
 
-        <Route
-          path="/customer-dashboard"
-          element={
-            <CustomerOnlyRoute>
-              <CustomerDashboard />
-            </CustomerOnlyRoute>
-          }
-        />
       </Routes>
     </Router>
   );
