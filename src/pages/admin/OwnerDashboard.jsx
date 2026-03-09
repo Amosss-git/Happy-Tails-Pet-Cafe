@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./OwnerDashboard.css";
-import logo from "../assets/logo.jpg";
+import logo from "../../assets/logo.jpg";
 
 function OwnerDashboard(){
 

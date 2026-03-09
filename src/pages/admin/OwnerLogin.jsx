@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./StaffLogin.css";
+import "./OwnerLogin.css";
 
-import cafe1 from "../assets/cafe1.jpg";
-import cafe2 from "../assets/cafe2.jpg";
-import cafe3 from "../assets/cafe3.jpg";
+import cafe1 from "../../assets/cafe1.jpg";
+import cafe2 from "../../assets/cafe2.jpg";
+import cafe3 from "../../assets/cafe3.jpg";
 
 const images = [cafe1, cafe2, cafe3];
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./Orders.css";
-import menuItems from "../data/menuItems";
+import menuItems from "../../data/menuItems";
 
 export default function Orders(){
 
