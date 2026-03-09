@@ -93,6 +93,10 @@ function StaffLogin() {
             I am the owner
           </Link>
 
+          <Link to="/customer-login" className="register-link">
+            I am a customer
+          </Link>
+
         </div>
 
       </div>

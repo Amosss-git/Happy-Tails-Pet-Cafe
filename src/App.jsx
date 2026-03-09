@@ -12,15 +12,15 @@ import ActivityHistory from "./pages/staff/ActivityHistory";
 import OwnerLogin from "./pages/admin/OwnerLogin";
 import OwnerDashboard from "./pages/admin/OwnerDashboard";
 import OwnerActivityHistory from "./pages/admin/OwnerActivityHistory";
+import CustomerLogin from "./pages/customer/CustomerLogin";
+import CustomerDashboard from "./pages/customer/CustomerDashboard";
 
 const getRole = () => localStorage.getItem("userRole");
 
 function StaffOrOwnerRoute({ children }) {
   const role = getRole();
 
-  if (role === "staff" || role === "owner") {
-    return children;
-  }
+  if (role === "staff" || role === "owner") return children;
 
   return <Navigate to="/staff-login" replace />;
 }
@@ -28,11 +28,17 @@ function StaffOrOwnerRoute({ children }) {
 function OwnerOnlyRoute({ children }) {
   const role = getRole();
 
-  if (role === "owner") {
-    return children;
-  }
+  if (role === "owner") return children;
 
   return <Navigate to="/owner-login" replace />;
+}
+
+function CustomerOnlyRoute({ children }) {
+  const role = getRole();
+
+  if (role === "customer") return children;
+
+  return <Navigate to="/customer-login" replace />;
 }
 
 export default function App() {
@@ -44,6 +50,7 @@ export default function App() {
         <Route path="/staff-login" element={<StaffLogin />} />
         <Route path="/staff-register" element={<StaffRegister />} />
         <Route path="/owner-login" element={<OwnerLogin />} />
+        <Route path="/customer-login" element={<CustomerLogin />} />
 
         <Route
           path="/dashboard"
@@ -116,6 +123,15 @@ export default function App() {
             <OwnerOnlyRoute>
               <OwnerActivityHistory />
             </OwnerOnlyRoute>
+          }
+        />
+
+        <Route
+          path="/customer-dashboard"
+          element={
+            <CustomerOnlyRoute>
+              <CustomerDashboard />
+            </CustomerOnlyRoute>
           }
         />
       </Routes>
